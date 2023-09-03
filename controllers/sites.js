@@ -43,12 +43,15 @@ export const getSite = async (req, res) => {
 // UPDATE
 export const updateSite = async (req, res) => {
   try {
-    const { name, location, latitude, longitude } = req.body;
-    const [rows, fields] = await pool.query(
-      `UPDATE sites SET name = ?, location = ?, latitude = ?, longitude = ? WHERE id = ?`,
-      [name, location, latitude, longitude, req.params.id]
-    );
-    res.json(rows[0]);
+    const { name, siteType, address, latitude, longitude } = req.body;
+    console.log(req.body);
+    if (name && siteType) {
+      const [rows, fields] = await pool.query(
+        `UPDATE sites SET name = ?, siteType = ?, address = ?, latitude = ?, longitude = ? WHERE id = ?`,
+        [name, siteType, address, latitude, longitude, req.params.id]
+      );
+      res.status(201).json({ id: rows.insertId});
+    }
   } catch (err) {
     console.log(err);
     res.status(500).send("Something broke!");
@@ -58,9 +61,9 @@ export const updateSite = async (req, res) => {
 // DELETE
 export const deleteSite = async (req, res) => {
   try {
-    const [rows, fields] = await pool.query(
-      `DELETE FROM sites WHERE id = ?`, [req.params.id]
-    );
+    const [rows, fields] = await pool.query(`DELETE FROM sites WHERE id = ?`, [
+      req.params.id,
+    ]);
     res.json(rows[0]);
   } catch (err) {
     console.log(err);

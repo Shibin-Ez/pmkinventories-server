@@ -55,7 +55,7 @@ export const getStock = async (req, res) => {
       `SELECT * FROM stocks WHERE id = ?`,
       [req.params.id]
     );
-    res.json(rows[0]);
+    res.status(200).json(rows[0]);
   } catch (err) {
     console.log(err);
     res.status(500).send("Something broke!");
@@ -68,7 +68,8 @@ export const getStocksBySites = async (req, res) => {
     const [sites] = await pool.query("SELECT id, name FROM sites");
     for (const site of sites) {
       const stocks = await getStocksBySite(site.id);
-      report.push({ siteName: site.name, stocks: stocks });
+      if (stocks.length > 0)
+        report.push({ siteName: site.name, stocks: stocks });
     };
     res.status(200).json(report);
   } catch (err) {
