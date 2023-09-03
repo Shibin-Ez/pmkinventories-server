@@ -4,8 +4,8 @@ dotenv.config();
 
 const pool = mysql
   .createPool({
-    host: process.env.DBHOST,
-    user: process.env.USER,
+    host: "testdb.camp9fj7olyc.eu-north-1.rds.amazonaws.com",
+    user: "admin",
     password: process.env.DBPASS,
     database: "testdb",
   })
