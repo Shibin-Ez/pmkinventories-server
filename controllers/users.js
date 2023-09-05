@@ -30,7 +30,7 @@ export const createUser = async (req, res) => {
         `INSERT INTO users (userRole, name, userId, siteId, siteName, mobileNo, email, passwordHash) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
         [userRole, name, userId, siteId, siteName, mobileNo, email, otp]
       );
-      res.status(201).json({ ...req.body, passwordHash: otp.split("$")[1] });
+      res.status(201).json({ ...req.body, userId, passwordHash: otp.split("$")[1] });
     } else {
       res.status(409).json({ message: "Please provide userRole and name" });
     }
