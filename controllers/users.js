@@ -7,9 +7,28 @@ export const createUser = async (req, res) => {
     console.log(req.body);
     if (userRole && name) {
       const otp = "$" + Math.floor(1000 + Math.random() * 8900);
+      const [rows0] = await pool.query(
+        `SELECT COUNT(*) AS rowCount
+        FROM users
+        WHERE userRole = ?`,
+        [userRole]
+      );
+      console.log(rows0);
+      let userId = rows0[0].rowCount + 1;
+      switch (userRole) {
+        case "director": userId = 10000 + userId; break;
+        case "manager": userId = 20000 + userId; break;
+        case "admin": userId = 30000 + userId; break;
+        case "user": userId = 40000 + userId; break;
+      }
+      const [sites] = await pool.query(
+        `SELECT name FROM sites WHERE id = ?`,
+        [siteId]
+      );
+      const siteName = sites[0].name;
       const [rows, fields] = await pool.query(
-        `INSERT INTO users (userRole, name, siteId, mobileNo, email, passwordHash) VALUES (?, ?, ?, ?, ?, ?)`,
-        [userRole, name, siteId, mobileNo, email, otp]
+        `INSERT INTO users (userRole, name, userId, siteId, siteName, mobileNo, email, passwordHash) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+        [userRole, name, userId, siteId, siteName, mobileNo, email, otp]
       );
       res.status(201).json({ ...req.body, passwordHash: otp.split("$")[1] });
     } else {

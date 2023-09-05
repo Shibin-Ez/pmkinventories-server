@@ -2,6 +2,7 @@
 CREATE TABLE Users (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
+    userId VARCHAR(10) NOT NULL,
     userRole VARCHAR(20) NOT NULL,
     siteId INT,
     mobileNo VARCHAR(10) NOT NULL,

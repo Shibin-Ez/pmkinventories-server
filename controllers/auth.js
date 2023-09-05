@@ -19,12 +19,13 @@ export const registerInitiate = async (req, res) => {
 // LOGIN USER
 export const loginUser = async (req, res) => {
   try {
-    const { mobileNo, password } = req.body;
+    const { userId, password } = req.body;
     console.log(req.body);
     const [rows, fields] = await pool.query(
-      `SELECT id, name, passwordHash, userRole FROM users WHERE mobileNo = ?`,
-      [mobileNo]
+      `SELECT id, name, passwordHash, userRole FROM users WHERE userId = ?`,
+      [userId]
     );
+    if (rows.length === 0) return res.status(400).json({ msg: "Invalid User" });
     const passwordHash = rows[0].passwordHash.split("$")[1];
     const isMatch = passwordHash === password;
     if (!isMatch) return res.status(400).json({ msg: "Invalid credentials" });
