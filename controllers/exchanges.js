@@ -55,7 +55,6 @@ export const getExchanges = async (req, res) => {
         timestamp,
       });
     };
-    console.log(modifiedRows);
     res.status(200).json(modifiedRows);
   } catch (err) {
     console.log(err);
