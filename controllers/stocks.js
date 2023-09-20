@@ -11,11 +11,25 @@ export const createStock = async (req, res) => {
     );
     const siteId = siteIds[0].siteId;
 
-    const [rows, fields] = await pool.query(
-      `INSERT INTO stocks (siteId, inventoryId, available, serviceable, scrapped) VALUES (?, ?, ?, ?, ?)`,
-      [siteId, inventoryId, available, serviceable, scrapped]
+    const [isCreated] = await pool.query(
+      `SELECT * FROM stocks WHERE siteId = ? AND inventoryId = ?`,
+      [siteId, inventoryId]
     );
-    res.status(201).json({ id: rows.insertId });
+    if (isCreated.length > 0) {
+      // updation
+      const [rows, fields] = await pool.query(
+        `UPDATE stocks SET available = ?, serviceable = ?, scrapped = ? WHERE siteId = ? AND inventoryId = ?`,
+        [available, serviceable, scrapped, siteId, inventoryId]
+      );
+      res.status(201).json({ id: isCreated[0].id });
+    } else {
+      //creation
+      const [rows, fields] = await pool.query(
+        `INSERT INTO stocks (siteId, inventoryId, available, serviceable, scrapped) VALUES (?, ?, ?, ?, ?)`,
+        [siteId, inventoryId, available, serviceable, scrapped]
+      );
+      res.status(201).json({ id: rows.insertId });
+    }
   } catch (err) {
     console.log(err);
     res.status(500).send("Something broke!");
@@ -70,7 +84,7 @@ export const getStocksBySites = async (req, res) => {
       const stocks = await getStocksBySite(site.id);
       if (stocks.length > 0)
         report.push({ siteName: site.name, stocks: stocks });
-    };
+    }
     res.status(200).json(report);
   } catch (err) {
     console.log(err);
@@ -83,7 +97,7 @@ export const getStocksBySite = async (id) => {
     `SELECT * FROM stocks WHERE siteId = ?`,
     [id]
   );
-  for(const row of rows) {
+  for (const row of rows) {
     const [inventory] = await pool.query(
       `SELECT name FROM inventories WHERE id = ?`,
       [row.inventoryId]

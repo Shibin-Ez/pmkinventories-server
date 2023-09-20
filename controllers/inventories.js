@@ -51,7 +51,7 @@ export const getInventoriesForSite = async (req, res) => {
     const siteId = users[0].siteId;
     const [allInventories] = await pool.query("SELECT * FROM inventories");
     const [stocks] = await pool.query(
-      "SELECT inventoryId FROM stocks WHERE siteId = ?",
+      "SELECT inventoryId, available, serviceable, scrapped FROM stocks WHERE siteId = ?",
       [siteId]
     );
     const inventories = [];
@@ -60,10 +60,22 @@ export const getInventoriesForSite = async (req, res) => {
       for (const stock of stocks) {
         if (inventory.id == stock.inventoryId) {
           isPresent = 1;
+          inventory.available = stock.available;
+          inventory.serviceable = stock.serviceable;
+          inventory.scrapped = stock.scrapped;
+          inventory.total = stock.available + stock.serviceable + stock.scrapped;
           break;
         }
       }
-      if (!isPresent) inventories.push(inventory);
+      if (!isPresent){
+        inventory.available = 0;
+        inventory.serviceable = 0;
+        inventory.scrapped = 0;
+        inventory.total = 0;
+        inventories.push(inventory);
+      } else {
+        inventories.push(inventory);
+      }
     }
     res.status(200).json(inventories);
   } catch (err) {
