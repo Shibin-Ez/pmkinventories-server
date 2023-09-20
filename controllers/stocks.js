@@ -4,7 +4,7 @@ import pool from "../pool.js";
 export const createStock = async (req, res) => {
   try {
     const userId = req.params.id;
-    const { inventoryId, available, serviceable, scrapped } = req.body;
+    const { inventoryId, available, serviceable, scrapped, remark } = req.body;
     const [siteIds] = await pool.query(
       `SELECT siteId FROM users WHERE id = ?`,
       [userId]
@@ -28,8 +28,8 @@ export const createStock = async (req, res) => {
         [available, serviceable, scrapped, siteId, inventoryId]
       );
       const [rows2] = await pool.query(
-        `INSERT INTO exchanges (fromStockId, toStockId, available, seviceable, scrapped) VALUES (?, ?, ?, ?, ?)`,
-        [isCreated[0].id, isCreated[0].id, available, serviceable, scrapped]
+        `INSERT INTO exchanges (fromStockId, toStockId, available, seviceable, scrapped, remark) VALUES (?, ?, ?, ?, ?, ?)`,
+        [isCreated[0].id, isCreated[0].id, available, serviceable, scrapped, remark]
       );
       res.status(201).json({
         id: inventoryId,
@@ -46,8 +46,8 @@ export const createStock = async (req, res) => {
         [siteId, inventoryId, available, serviceable, scrapped]
       );
       const [rows2] = await pool.query(
-        `INSERT INTO exchanges (fromStockId, toStockId, available, seviceable, scrapped) VALUES (?, ?, ?, ?, ?)`,
-        [rows.insertId, rows.insertId, available, serviceable, scrapped]
+        `INSERT INTO exchanges (fromStockId, toStockId, available, seviceable, scrapped, remark) VALUES (?, ?, ?, ?, ?, ?)`,
+        [rows.insertId, rows.insertId, available, serviceable, scrapped, remark]
       );
       res
         .status(201)
