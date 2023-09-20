@@ -27,6 +27,10 @@ export const createStock = async (req, res) => {
         `UPDATE stocks SET available = ?, serviceable = ?, scrapped = ? WHERE siteId = ? AND inventoryId = ?`,
         [available, serviceable, scrapped, siteId, inventoryId]
       );
+      const [rows2] = await pool.query(
+        `INSERT INTO exchanges (fromStockId, toStockId, available, seviceable, scrapped) VALUES (?, ?, ?, ?, ?)`,
+        [isCreated[0].id, isCreated[0].id, available, serviceable, scrapped]
+      );
       res.status(201).json({
         id: inventoryId,
         name: inventoryName[0].name,
@@ -40,6 +44,10 @@ export const createStock = async (req, res) => {
       const [rows, fields] = await pool.query(
         `INSERT INTO stocks (siteId, inventoryId, available, serviceable, scrapped) VALUES (?, ?, ?, ?, ?)`,
         [siteId, inventoryId, available, serviceable, scrapped]
+      );
+      const [rows2] = await pool.query(
+        `INSERT INTO exchanges (fromStockId, toStockId, available, seviceable, scrapped) VALUES (?, ?, ?, ?, ?)`,
+        [rows.insertId, rows.insertId, available, serviceable, scrapped]
       );
       res
         .status(201)
