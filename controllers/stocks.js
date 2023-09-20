@@ -28,7 +28,7 @@ export const createStock = async (req, res) => {
         [available, serviceable, scrapped, siteId, inventoryId]
       );
       res.status(201).json({
-        id: isCreated[0].id,
+        id: inventoryId,
         name: inventoryName[0].name,
         available,
         serviceable,
@@ -44,7 +44,7 @@ export const createStock = async (req, res) => {
       res
         .status(201)
         .json({
-          id: rows.insertId,
+          id: inventoryId,
           name: inventoryName[0].name,
           available,
           serviceable,
