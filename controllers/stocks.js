@@ -15,6 +15,12 @@ export const createStock = async (req, res) => {
       `SELECT * FROM stocks WHERE siteId = ? AND inventoryId = ?`,
       [siteId, inventoryId]
     );
+
+    const [inventoryName] = await pool.query(
+      `SELECT name FROM inventories WHERE id = ?`,
+      [inventoryId]
+    );
+
     if (isCreated.length > 0) {
       // updation
       const [rows, fields] = await pool.query(
@@ -23,6 +29,7 @@ export const createStock = async (req, res) => {
       );
       res.status(201).json({
         id: isCreated[0].id,
+        name: inventoryName[0].name,
         available,
         serviceable,
         scrapped,
@@ -38,6 +45,7 @@ export const createStock = async (req, res) => {
         .status(201)
         .json({
           id: rows.insertId,
+          name: inventoryName[0].name,
           available,
           serviceable,
           scrapped,
