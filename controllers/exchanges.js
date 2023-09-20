@@ -18,7 +18,45 @@ export const createExchange = async (req, res) => {
 export const getExchanges = async (req, res) => {
   try {
     const [rows, fields] = await pool.query("SELECT * FROM exchanges");
-    res.status(200).json(rows);
+    const reverseRows = rows.reverse();
+    const modifiedRows = [];
+    for (const row of reverseRows) {
+      const {
+        id,
+        fromStockId,
+        toStockId,
+        available,
+        serviceable,
+        scrapped,
+        remark,
+        timestamp,
+      } = row;
+      const [data] = await pool.query(
+        `SELECT siteId, inventoryId FROM stocks WHERE id = ?`,
+        [fromStockId]
+      );
+      const [data2] = await pool.query(
+        `SELECT name FROM inventories WHERE id = ?`,
+        [data[0].inventoryId]
+      );
+      const [data3] = await pool.query(`SELECT name FROM sites WHERE id = ?`, [
+        data[0].siteId,
+      ]);
+      modifiedRows.push({
+        id,
+        fromStockId,
+        toStockId,
+        inventoryName: data2[0].name,
+        siteName: data3[0].name,
+        available,
+        serviceable,
+        scrapped,
+        remark,
+        timestamp,
+      });
+    };
+    console.log(modifiedRows);
+    res.status(200).json(modifiedRows);
   } catch (err) {
     console.log(err);
     res.status(500).send("Something broke!");
@@ -51,4 +89,3 @@ export const getLastFewExchanges = async (req, res) => {
     res.status(500).send("Something broke!");
   }
 };
-
