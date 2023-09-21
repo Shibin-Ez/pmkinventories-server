@@ -30,7 +30,8 @@ export const createUser = async (req, res) => {
         `INSERT INTO users (userRole, name, userId, siteId, siteName, mobileNo, email, passwordHash) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
         [userRole, name, userId, siteId, siteName, mobileNo, email, otp]
       );
-      res.status(201).json({ ...req.body, userId, passwordHash: otp.split("$")[1] });
+      const link = "https://drive.google.com/uc?export=download&id=1-wPX3gOYfOC2z8pe7RAYSx3mc8ZeINDO";
+      res.status(201).json({ ...req.body, link, userId, passwordHash: otp.split("$")[1] });
     } else {
       res.status(409).json({ message: "Please provide userRole and name" });
     }

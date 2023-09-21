@@ -28,7 +28,7 @@ export const createStock = async (req, res) => {
         [available, serviceable, scrapped, siteId, inventoryId]
       );
       const [rows2] = await pool.query(
-        `INSERT INTO exchanges (fromStockId, toStockId, available, serviceable, scrapped, remark) VALUES (?, ?, ?, ?, ?, ?)`,
+        `INSERT INTO exchanges (fromStockId, toStockId, available, ser  viceable, scrapped, remark) VALUES (?, ?, ?, ?, ?, ?)`,
         [isCreated[0].id, isCreated[0].id, available, serviceable, scrapped, remark]
       );
       res.status(201).json({
