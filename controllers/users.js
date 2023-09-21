@@ -84,10 +84,17 @@ export const updateUser = async (req, res) => {
     const { userRole, name, siteId, mobileNo, email } = req.body;
     console.log("get body");
     console.log(req.body);
+    let sites = [];
+      if (siteId) {
+        [sites] = await pool.query(`SELECT name FROM sites WHERE id = ?`, [
+          siteId,
+        ]);
+      }
+      const siteName = sites[0].name;
     if (userRole && name) {
       const [rows, fields] = await pool.query(
-        `UPDATE users SET userRole = ?, name = ?, siteId = ?, mobileNo = ?, email = ? WHERE id = ?`,
-        [userRole, name, siteId, mobileNo, email, req.params.id]
+        `UPDATE users SET userRole = ?, name = ?, siteId = ?, siteName = ?, mobileNo = ?, email = ? WHERE id = ?`,
+        [userRole, name, siteId, siteName, mobileNo, email, req.params.id]
       );
       res.json({ id: rows.insertId });
     }
