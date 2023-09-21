@@ -29,6 +29,9 @@ export const getExchanges = async (req, res) => {
         serviceable,
         scrapped,
         remark,
+        prevAvailable,
+        prevServiceable,
+        prevScrapped,
         timestamp,
       } = row;
       const [data] = await pool.query(
@@ -52,6 +55,9 @@ export const getExchanges = async (req, res) => {
         serviceable,
         scrapped,
         remark,
+        prevAvailable,
+        prevServiceable,
+        prevScrapped,
         timestamp,
       });
     };
