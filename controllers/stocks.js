@@ -28,8 +28,18 @@ export const createStock = async (req, res) => {
         [available, serviceable, scrapped, siteId, inventoryId]
       );
       const [rows2] = await pool.query(
-        `INSERT INTO exchanges (fromStockId, toStockId, available, ser  viceable, scrapped, remark) VALUES (?, ?, ?, ?, ?, ?)`,
-        [isCreated[0].id, isCreated[0].id, available, serviceable, scrapped, remark]
+        `INSERT INTO exchanges (fromStockId, toStockId, available, serviceable, scrapped, remark, prevAvailable, prevServiceable, prevScrapped) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [
+          isCreated[0].id,
+          isCreated[0].id,
+          available,
+          serviceable,
+          scrapped,
+          remark,
+          isCreated[0].available,
+          isCreated[0].serviceable,
+          isCreated[0].scrapped,
+        ]
       );
       res.status(201).json({
         id: inventoryId,
@@ -46,19 +56,27 @@ export const createStock = async (req, res) => {
         [siteId, inventoryId, available, serviceable, scrapped]
       );
       const [rows2] = await pool.query(
-        `INSERT INTO exchanges (fromStockId, toStockId, available, serviceable, scrapped, remark) VALUES (?, ?, ?, ?, ?, ?)`,
-        [rows.insertId, rows.insertId, available, serviceable, scrapped, remark]
-      );
-      res
-        .status(201)
-        .json({
-          id: inventoryId,
-          name: inventoryName[0].name,
+        `INSERT INTO exchanges (fromStockId, toStockId, available, serviceable, scrapped, remark, prevAvailable, prevServiceable, prevScrapped) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        [
+          rows.insertId,
+          rows.insertId,
           available,
           serviceable,
           scrapped,
-          total: available + serviceable + scrapped,
-        });
+          remark,
+          0,
+          0,
+          0,
+        ]
+      );
+      res.status(201).json({
+        id: inventoryId,
+        name: inventoryName[0].name,
+        available,
+        serviceable,
+        scrapped,
+        total: available + serviceable + scrapped,
+      });
     }
   } catch (err) {
     console.log(err);
