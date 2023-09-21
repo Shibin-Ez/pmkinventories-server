@@ -16,22 +16,35 @@ export const createUser = async (req, res) => {
       console.log(rows0);
       let userId = rows0[0].rowCount + 1;
       switch (userRole) {
-        case "director": userId = 10000 + userId; break;
-        case "manager": userId = 20000 + userId; break;
-        case "admin": userId = 30000 + userId; break;
-        case "user": userId = 40000 + userId; break;
+        case "director":
+          userId = 10000 + userId;
+          break;
+        case "manager":
+          userId = 20000 + userId;
+          break;
+        case "admin":
+          userId = 30000 + userId;
+          break;
+        case "user":
+          userId = 40000 + userId;
+          break;
       }
-      const [sites] = await pool.query(
-        `SELECT name FROM sites WHERE id = ?`,
-        [siteId]
-      );
+      let sites = [];
+      if (siteId) {
+        [sites] = await pool.query(`SELECT name FROM sites WHERE id = ?`, [
+          siteId,
+        ]);
+      }
       const siteName = sites[0].name;
       const [rows, fields] = await pool.query(
         `INSERT INTO users (userRole, name, userId, siteId, siteName, mobileNo, email, passwordHash) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
         [userRole, name, userId, siteId, siteName, mobileNo, email, otp]
       );
-      const link = "https://drive.google.com/uc?export=download&id=1-wPX3gOYfOC2z8pe7RAYSx3mc8ZeINDO";
-      res.status(201).json({ ...req.body, link, userId, passwordHash: otp.split("$")[1] });
+      const link =
+        "https://drive.google.com/uc?export=download&id=1-wPX3gOYfOC2z8pe7RAYSx3mc8ZeINDO";
+      res
+        .status(201)
+        .json({ ...req.body, link, userId, passwordHash: otp.split("$")[1] });
     } else {
       res.status(409).json({ message: "Please provide userRole and name" });
     }
