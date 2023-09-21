@@ -35,16 +35,31 @@ export const createUser = async (req, res) => {
           siteId,
         ]);
       }
-      const siteName = sites[0] ? sites[0].name: "";
+      const siteName = sites[0] ? sites[0].name : "";
       const [rows, fields] = await pool.query(
         `INSERT INTO users (userRole, name, userId, siteId, siteName, mobileNo, email, passwordHash) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
         [userRole, name, userId, siteId, siteName, mobileNo, email, otp]
       );
       const link =
         "https://drive.google.com/uc?export=download&id=1-wPX3gOYfOC2z8pe7RAYSx3mc8ZeINDO";
+      let manualLink = "";
+      switch (userRole) {
+        case "director":
+          manualLink =
+            "https://drive.google.com/uc?export=download&id=1UTr93FTdEC1sHYILPuyOT1f6g2lt-xjx";
+          break;
+        case "admin":
+          manualLink =
+            "https://drive.google.com/uc?export=download&id=1cOJWGqLJIMw6DkgsxPEoUvmvFtOt6Eg8";
+          break;
+        case "user":
+          manualLink =
+            "https://drive.google.com/uc?export=download&id=1R6lF2WaOyHoyPIikTAJfHavCD_r80roF";
+          break;
+      }
       res
         .status(201)
-        .json({ ...req.body, link, userId, passwordHash: otp.split("$")[1] });
+        .json({ ...req.body, link, manualLink, userId, passwordHash: otp.split("$")[1] });
     } else {
       res.status(409).json({ message: "Please provide userRole and name" });
     }
