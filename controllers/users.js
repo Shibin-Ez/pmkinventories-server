@@ -35,7 +35,7 @@ export const createUser = async (req, res) => {
           siteId,
         ]);
       }
-      const siteName = sites[0].name;
+      const siteName = sites[0] ? sites[0].name: "";
       const [rows, fields] = await pool.query(
         `INSERT INTO users (userRole, name, userId, siteId, siteName, mobileNo, email, passwordHash) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
         [userRole, name, userId, siteId, siteName, mobileNo, email, otp]
@@ -84,14 +84,14 @@ export const updateUser = async (req, res) => {
     const { userRole, name, siteId, mobileNo, email } = req.body;
     console.log("get body");
     console.log(req.body);
-    let sites = [];
+    if (userRole && name) {
+      let sites = [];
       if (siteId) {
         [sites] = await pool.query(`SELECT name FROM sites WHERE id = ?`, [
           siteId,
         ]);
       }
-      const siteName = sites[0].name;
-    if (userRole && name) {
+      const siteName = sites[0] ? sites[0].name : "";
       const [rows, fields] = await pool.query(
         `UPDATE users SET userRole = ?, name = ?, siteId = ?, siteName = ?, mobileNo = ?, email = ? WHERE id = ?`,
         [userRole, name, siteId, siteName, mobileNo, email, req.params.id]
