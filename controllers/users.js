@@ -41,20 +41,20 @@ export const createUser = async (req, res) => {
         [userRole, name, userId, siteId, siteName, mobileNo, email, otp]
       );
       const link =
-        "https://drive.google.com/uc?export=download&id=1-wPX3gOYfOC2z8pe7RAYSx3mc8ZeINDO";
+        "https://tinyurl.com/2h2ajwcc";
       let manualLink = "";
       switch (userRole) {
         case "director":
           manualLink =
-            "https://drive.google.com/uc?export=download&id=1UTr93FTdEC1sHYILPuyOT1f6g2lt-xjx";
+            "https://tinyurl.com/5n7s4z9r";
           break;
         case "admin":
           manualLink =
-            "https://drive.google.com/uc?export=download&id=1cOJWGqLJIMw6DkgsxPEoUvmvFtOt6Eg8";
+            "https://tinyurl.com/vibgreen";
           break;
         case "user":
           manualLink =
-            "https://drive.google.com/uc?export=download&id=1R6lF2WaOyHoyPIikTAJfHavCD_r80roF";
+            "https://tinyurl.com/57uaycjh";
           break;
       }
       res
