@@ -37,4 +37,4 @@ app.use("/stocks", stockRoutes);
 app.use("/auth", authRoutes);
 app.use("/home", homeRoutes);
 
-app.listen(3001, () => console.log("Server started on port 3001"));
+app.listen(3002, () => console.log("Server started on port 3002"));
