@@ -1,5 +1,5 @@
 import express from 'express';
-import { getSite, getSites, createSite, updateSite, deleteSite } from '../controllers/sites.js';
+import { getSite, getSites, createSite, updateSite, deleteSite, downloadSitePdf } from '../controllers/sites.js';
 
 const router = express.Router();
 
@@ -8,7 +8,8 @@ router.post('/', createSite);
 
 // READ
 router.get('/', getSites);
-router.get('/:id', getSite);
+router.get('/site/:id', getSite);
+router.get('/download', downloadSitePdf);
 
 // UPDATE
 router.patch('/:id', updateSite);

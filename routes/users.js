@@ -1,5 +1,5 @@
 import express from 'express';
-import { getUsers, getUser, createUser, updateUser } from '../controllers/users.js';
+import { getUsers, getUser, createUser, updateUser, downloadUsersPdf } from '../controllers/users.js';
 
 const router = express.Router();
 
@@ -8,7 +8,8 @@ router.post('/', createUser);
 
 // READ
 router.get('/', getUsers);
-router.get('/:id', getUser);
+router.get('/user/:id', getUser);
+router.get('/download', downloadUsersPdf);
 
 // UPDATE
 router.patch('/:id', updateUser);

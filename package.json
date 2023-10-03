@@ -19,6 +19,7 @@
     "helmet": "^7.0.0",
     "jsonwebtoken": "^9.0.1",
     "mysql2": "^3.6.0",
+    "pdfkit-table": "^0.1.99",
     "request": "^2.88.2",
     "twilio": "^4.15.0"
   }
