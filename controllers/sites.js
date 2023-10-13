@@ -14,7 +14,7 @@ export const createSite = async (req, res) => {
       );
 
       const [rows2] = await pool.query(
-        `UPDATE sites SET inventoryId = 1000+id`
+        `UPDATE sites SET siteId = 1000+id`
       );
 
       const [rows3, fields2] = await pool.query(

@@ -1,5 +1,5 @@
 const latestVersion = {
-    version: "1.2.2",
+    version: "1.2.3",
     url: "https://tinyurl.com/2h2ajwcc"
 };
 
