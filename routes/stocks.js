@@ -5,6 +5,7 @@ import {
   getStocksBySites,
   createStock,
   updateStock,
+  rollback,
 } from "../controllers/stocks.js";
 
 const router = express.Router();
@@ -19,6 +20,7 @@ router.get("/reports/sitewise", getStocksBySites)
 
 // UPDATE
 router.put("/:id", updateStock);
+router.patch("/:id/rollback", rollback);
 
 
 export default router;

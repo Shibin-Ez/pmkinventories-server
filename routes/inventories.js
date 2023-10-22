@@ -7,6 +7,7 @@ import {
   updateInventory,
   deleteInventory,
   downloadInventoryPdf,
+  getInventoriesByCategory,
 } from "../controllers/inventories.js";
 
 const router = express.Router();
@@ -19,6 +20,7 @@ router.get("/", getInventories);
 router.get("/inventory/:id", getInventory);
 router.get("/site/:id", getInventoriesForSite);
 router.get("/download", downloadInventoryPdf);
+router.get("/category/:id", getInventoriesByCategory);
 
 // UPDATE
 router.patch("/:id", updateInventory);

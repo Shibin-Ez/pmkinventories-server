@@ -33,7 +33,7 @@ CREATE TABLE inventories (
 );
 
 --@block
-SELECT * FROM users;
+SELECT * FROM stocks;
 
 --@block
 CREATE TABLE sites (
@@ -55,4 +55,10 @@ CREATE TABLE stocks (
     serviceable INT DEFAULT 0,
     scrapped INT DEFAULT 0,
     UNIQUE (siteId, inventoryId)
+);
+
+--@block
+CREATE TABLE categories (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL
 );

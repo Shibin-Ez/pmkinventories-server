@@ -12,6 +12,7 @@ import invertoryRoutes from "./routes/inventories.js";
 import stockRoutes from "./routes/stocks.js";
 import authRoutes from "./routes/auth.js";
 import homeRoutes from "./routes/home.js";
+import categoryRoutes from "./routes/category.js";
 
 // CONFIGURATION
 const app = express();
@@ -36,5 +37,6 @@ app.use("/inventories", invertoryRoutes);
 app.use("/stocks", stockRoutes);
 app.use("/auth", authRoutes);
 app.use("/home", homeRoutes);
+app.use("/categories", categoryRoutes);
 
 app.listen(3001, () => console.log("Server started on port 3001"));

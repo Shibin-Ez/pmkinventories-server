@@ -5,7 +5,7 @@ import fs from "fs";
 // CREATE
 export const createUser = async (req, res) => {
   try {
-    const { userRole, name, siteId, mobileNo, email } = req.body;
+    const { userRole, name, siteId, mobileNo, email, adminId } = req.body;
     console.log(req.body);
     if (userRole && name) {
       const otp = "$" + Math.floor(1000 + Math.random() * 8900);
@@ -42,6 +42,12 @@ export const createUser = async (req, res) => {
         `INSERT INTO users (userRole, name, userId, siteId, siteName, mobileNo, email, passwordHash) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
         [userRole, name, userId, siteId, siteName, mobileNo, email, otp]
       );
+
+      const [rows2] = await pool.query(
+        `INSERT INTO crudLogs (userId, action, tableName, columnName, entryId, oldData, newData) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+        [adminId, "create", "users", "name", rows.insertId, "", name]
+      );
+
       const link =
         "https://tinyurl.com/2h2ajwcc";
       let manualLink = "";
@@ -159,8 +165,8 @@ export const downloadUsersPdf = async (req, res) => {
 // UPDATE
 export const updateUser = async (req, res) => {
   try {
-    const { userRole, name, siteId, mobileNo, email } = req.body;
-    console.log("get body");
+    const { userRole, name, siteId, mobileNo, email, adminId } = req.body;
+    const userId = req.params.id;
     console.log(req.body);
     if (userRole && name) {
       let sites = [];
@@ -172,9 +178,12 @@ export const updateUser = async (req, res) => {
       const siteName = sites[0] ? sites[0].name : "";
       const [rows, fields] = await pool.query(
         `UPDATE users SET userRole = ?, name = ?, siteId = ?, siteName = ?, mobileNo = ?, email = ? WHERE id = ?`,
-        [userRole, name, siteId, siteName, mobileNo, email, req.params.id]
+        [userRole, name, siteId, siteName, mobileNo, email, userId]
       );
-      res.json({ id: rows.insertId });
+
+
+
+      res.status(200).json({ id: rows.insertId });
     }
   } catch (err) {
     console.log(err);

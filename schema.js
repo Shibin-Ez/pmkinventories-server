@@ -21,6 +21,15 @@ export const Stocks = {
     scrapped: 'INT',
 }
 
+export const prevStocks = {
+    id: 'INT AUTO_INCREMENT PRIMARY KEY',
+    siteId: 'INT FOREIGN KEY',
+    inventoryId: 'INT FOREIGN KEY',
+    available: 'INT',
+    serviceable: 'INT',
+    scrapped: 'INT',
+}
+
 export const Exchanges = {
     id: 'INT AUTO_INCREMENT PRIMARY KEY',
     fromStockId: 'INT',

@@ -2,13 +2,13 @@
 use testdb2;
 
 --@block add new column with data 1000+id
-ALTER TABLE inventories ADD COLUMN type VARCHAR(10);
+ALTER TABLE inventories ADD COLUMN categoryId INT NOT NULL DEFAULT 1 AFTER inventoryId;
 
 --@block delete column siteId
 ALTER TABLE sites DROP COLUMN siteId;
 
 --@block
-select * from inventories;
+select * from categories;
 
 --@block siteId = 1000+id logic
 update inventories set inventoryId = 1000+id;

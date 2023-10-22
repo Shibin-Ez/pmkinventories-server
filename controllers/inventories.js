@@ -5,11 +5,11 @@ import fs from "fs";
 // CREATE
 export const createInventory = async (req, res) => {
   try {
-    const { name, unit } = req.body;
+    const { name, unit, categoryId } = req.body;
     if (name) {
       const [rows, fields] = await pool.query(
-        `INSERT INTO inventories (name, unit) VALUES (?, ?)`,
-        [name, unit]
+        `INSERT INTO inventories (name, unit, categoryId) VALUES (?, ?, ?)`,
+        [name, unit, categoryId]
       );
 
       const [rows2] = await pool.query(
@@ -28,7 +28,18 @@ export const createInventory = async (req, res) => {
 export const getInventories = async (req, res) => {
   try {
     const [rows, fields] = await pool.query("SELECT * FROM inventories");
-    res.status(200).json(rows);
+    const updatedRows = [];
+    const [categories] = await pool.query("SELECT * FROM categories");
+    for (let row of rows) {
+      let name = ""
+      categories.forEach((category) => {
+        if (category.id == row.categoryId) {
+          name = category.name;
+        }
+      });
+      updatedRows.push({ ...row, categoryName: name });
+    };
+    res.status(200).json(updatedRows);
   } catch (err) {
     console.log(err);
     res.status(500).send("Something broke!");
@@ -60,8 +71,21 @@ export const getInventoriesForSite = async (req, res) => {
       "SELECT inventoryId, available, serviceable, scrapped FROM stocks WHERE siteId = ?",
       [siteId]
     );
+    
+    const updatedInventories = [];
+    const [categories] = await pool.query("SELECT * FROM categories");
+    for (let row of allInventories) {
+      let name = ""
+      categories.forEach((category) => {
+        if (category.id == row.categoryId) {
+          name = category.name;
+        }
+      });
+      updatedInventories.push({ ...row, categoryName: name });
+    };
+
     const inventories = [];
-    for (const inventory of allInventories) {
+    for (const inventory of updatedInventories) {
       let isPresent = 0;
       for (const stock of stocks) {
         if (inventory.id == stock.inventoryId) {
@@ -143,13 +167,27 @@ export const downloadInventoryPdf = async (req, res) => {
   }
 };
 
+export const getInventoriesByCategory = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const [rows] = await pool.query(
+      `SELECT * FROM inventories WHERE categoryId = ?`,
+      [id]
+    );
+    res.status(200).json(rows);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Something broke!");
+  }
+};
+
 // UPDATE
 export const updateInventory = async (req, res) => {
   try {
-    const { name, unit } = req.body;
+    const { name, unit, categoryId } = req.body;
     const [rows, fields] = await pool.query(
-      `UPDATE inventories SET name = ?, unit = ? WHERE id = ?`,
-      [name, unit, req.params.id]
+      `UPDATE inventories SET name = ?, unit = ?, categoryId = ? WHERE id = ?`,
+      [name, unit, categoryId, req.params.id]
     );
     res.status(200).json({ status: "success" });
   } catch (err) {

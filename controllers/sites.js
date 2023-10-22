@@ -17,7 +17,7 @@ export const createSite = async (req, res) => {
         `UPDATE sites SET siteId = 1000+id`
       );
 
-      const [rows3, fields2] = await pool.query(
+      const [rows3] = await pool.query(
         `INSERT INTO crudLogs (userId, action, tableName, columnName, entryId, oldData, newData) VALUES (?, ?, ?, ?, ?, ?, ?)`,
         [userId, "create", "sites", "name", rows.insertId, "", name]
       );
@@ -167,7 +167,7 @@ export const deleteSite = async (req, res) => {
 
     const [rows2, fields2] = await pool.query(
       `INSERT INTO crudLogs (userId, action, tableName, columnName, entryId, oldData, newData) VALUES (?, ?, ?, ?, ?, ?, ?)`,
-      [userId, "delete", "sites", "name", rows.insertId, "", name]
+      [userId, "delete", "sites", "name", rows.insertId, name, ""]
     );
 
     res.status(200).json({status: "success"});

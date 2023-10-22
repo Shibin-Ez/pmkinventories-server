@@ -15,7 +15,27 @@ create table crudLogs (
 );
 
 --@block
-select * from crudLogs;
+create table prevStocks like stocks;
+insert into prevStocks select * from stocks;
+
+--@block
+select * from prevStocks;
 
 --@block delete table crudLogs
 drop table crudLogs;
+
+--@block
+create table prevStocks like stocks;
+insert into prevStocks select * from stocks;
+
+--@block initialize all values to 0
+update prevStocks set available = 0, serviceable = 0, scrapped = 0;
+
+--@block remove all entries from stocks
+delete from prevStocks;
+
+--@block get table schema of stocks
+describe crudLogs;
+
+--@block set table schema of stocks id to primary key and auto increment
+ALTER TABLE prevStocks MODIFY id INT PRIMARY KEY AUTO_INCREMENT;
