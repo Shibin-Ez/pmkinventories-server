@@ -8,7 +8,10 @@ ALTER TABLE inventories ADD COLUMN categoryId INT NOT NULL DEFAULT 1 AFTER inven
 ALTER TABLE sites DROP COLUMN siteId;
 
 --@block
-select * from inventories;
+select * from categories;
+
+--@block
+UPDATE categories SET name = 'other' where id = 1;
 
 --@block siteId = 1000+id logic
 update inventories set inventoryId = 1000+id;
