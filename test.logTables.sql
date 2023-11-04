@@ -19,7 +19,11 @@ create table prevStocks like stocks;
 insert into prevStocks select * from stocks;
 
 --@block
-select * from prevStocks;
+select * from exchanges;
+
+--@block delete all contents of exchanges
+delete from exchanges;
+
 
 --@block delete table crudLogs
 drop table crudLogs;
@@ -35,7 +39,10 @@ update prevStocks set available = 0, serviceable = 0, scrapped = 0;
 delete from prevStocks;
 
 --@block get table schema of stocks
-describe crudLogs;
+describe exchanges;
+
+--@block make exchanges id primary key and auto increment
+ALTER TABLE exchanges MODIFY id INT PRIMARY KEY AUTO_INCREMENT;
 
 --@block set table schema of stocks id to primary key and auto increment
 ALTER TABLE prevStocks MODIFY id INT PRIMARY KEY AUTO_INCREMENT;

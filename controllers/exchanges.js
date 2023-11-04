@@ -38,10 +38,12 @@ export const getExchanges = async (req, res) => {
         `SELECT siteId, inventoryId FROM stocks WHERE id = ?`,
         [fromStockId]
       );
+      console.log(data);
       const [data2] = await pool.query(
         `SELECT name FROM inventories WHERE id = ?`,
         [data[0].inventoryId]
       );
+      console.log(data2);
       const [data3] = await pool.query(`SELECT name FROM sites WHERE id = ?`, [
         data[0].siteId,
       ]);
