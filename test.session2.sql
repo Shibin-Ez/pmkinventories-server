@@ -1,5 +1,5 @@
 --@block
-use testdb2;
+use testdb;
 
 --@block add new column with data 1000+id
 ALTER TABLE inventories ADD COLUMN categoryId INT NOT NULL DEFAULT 1 AFTER inventoryId;
@@ -8,7 +8,7 @@ ALTER TABLE inventories ADD COLUMN categoryId INT NOT NULL DEFAULT 1 AFTER inven
 ALTER TABLE sites DROP COLUMN siteId;
 
 --@block
-select * from categories;
+select * from inventories;
 
 --@block siteId = 1000+id logic
 update inventories set inventoryId = 1000+id;
