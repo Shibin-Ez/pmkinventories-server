@@ -1,4 +1,6 @@
 import pool from "../pool.js";
+import PDFDocument from "pdfkit-table";
+import fs from "fs";
 
 // CREATE
 export const createStock = async (req, res) => {
@@ -140,15 +142,45 @@ export const getStock = async (req, res) => {
   }
 };
 
-export const getStocksBySites = async (req, res) => {
+// report
+export const getStockSitewise = async () => {
   try {
     const report = [];
     const [sites] = await pool.query("SELECT id, name FROM sites");
+    const [stocks] = await pool.query("SELECT * FROM stocks");
+    const [inventories] = await pool.query("SELECT * FROM inventories");
     for (const site of sites) {
-      const stocks = await getStocksBySite(site.id);
-      if (stocks.length > 0)
-        report.push({ siteName: site.name, stocks: stocks });
+      const stocksForSite = [];
+      for (const stock of stocks) {
+        if (stock.siteId === site.id) {
+          for (const inventory of inventories) {
+            if (inventory.id === stock.inventoryId) {
+              stock.inventoryName = inventory.name;
+              break;
+            }
+          }
+
+          const sum = stock.available + stock.serviceable + stock.scrapped;
+          if (sum > 0) stocksForSite.push(stock);
+        }
+      }
+
+      // const stocks = await getStocksBySite(site.id);
+      if (stocksForSite.length > 0)
+        report.push({ siteName: site.name, stocks: stocksForSite });
     }
+    // res.status(200).json(report);
+    return report;
+  } catch (err) {
+    console.log(err);
+    // res.status(500).send("Something broke!");
+    return;
+  }
+};
+
+export const getStocksBySites = async (req, res) => {
+  try {
+    const report = await getStockSitewise();
     res.status(200).json(report);
   } catch (err) {
     console.log(err);
@@ -156,19 +188,109 @@ export const getStocksBySites = async (req, res) => {
   }
 };
 
-export const getStocksBySite = async (id) => {
-  const [rows, fields] = await pool.query(
-    `SELECT * FROM stocks WHERE siteId = ?`,
-    [id]
-  );
-  for (const row of rows) {
-    const [inventory] = await pool.query(
-      `SELECT name FROM inventories WHERE id = ?`,
-      [row.inventoryId]
+export const getStocksBySite = async (req, res) => {
+  try {
+    const [rows, fields] = await pool.query(
+      `SELECT * FROM stocks WHERE siteId = ?`,
+      [req.params.id]
     );
-    row.inventoryName = inventory[0].name;
+    const [inventories] = await pool.query("SELECT * FROM inventories");
+    const stocks = [];
+    for (const row of rows) {
+      const sum = row.available + row.serviceable + row.scrapped;
+      if (sum === 0) continue;
+      for (const inventory of inventories) {
+        if (inventory.id === row.inventoryId) {
+          row.inventoryName = inventory.name;
+          break;
+        }
+      }
+
+      stocks.push(row);
+    }
+    res.status(200).json(stocks);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Something broke!");
   }
-  return rows;
+};
+
+export const downloadReportPdf = async (req, res) => {
+  try {
+    const doc = new PDFDocument({ margin: 30, size: "A4" });
+    const filename = "report.pdf";
+    const pdfStream = doc.pipe(fs.createWriteStream(filename));
+
+    // PDF metadata
+    doc.info["Title"] = "Sitewise Inventory Report";
+
+    // Fetch data from the database
+    const report = await getStockSitewise();
+    // const [rows] = await pool.query("SELECT * FROM sites");
+
+    for (const rows of report) {
+      // Create table data
+      let count = 1;
+      const table = {
+        title: rows.siteName,
+        headers: [
+          { label: "Sl.No", property: "slNo", width: 50, renderer: null },
+          { label: "Inventory", property: "name", width: 200, renderer: null },
+          {
+            label: "Available",
+            property: "available",
+            width: 100,
+            renderer: null,
+          },
+          {
+            label: "Serviceable",
+            property: "serviceable",
+            width: 100,
+            renderer: null,
+          },
+          {
+            label: "Scrapped",
+            property: "scrapped",
+            width: 100,
+            renderer: null,
+          },
+        ],
+        rows: rows.stocks.map((row) => [
+          count++,
+          row.inventoryName,
+          row.available,
+          row.serviceable,
+          row.scrapped,
+        ]),
+      };
+
+      // Calculate the horizontal center position for the table
+      const pageWidth = doc.page.width;
+      const tableWidth = 550; // Assuming each column is 100 units wide
+      const centerX = (pageWidth - tableWidth) / 2;
+
+      // Center the table horizontally on the page
+      doc.table(table, {
+        width: tableWidth,
+        x: centerX,
+      });
+    }
+
+    // Respond to the request with the PDF as a download
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);
+
+    // Pipe the PDF stream to the response
+    pdfStream.on("finish", () => {
+      fs.createReadStream(filename).pipe(res);
+    });
+
+    // End the PDF creation
+    doc.end();
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Something broke!");
+  }
 };
 
 export const getStocksByInventory = async (req, res) => {
@@ -233,10 +355,9 @@ export const updateItemStates = async (req, res) => {
 export const rollback = async (req, res) => {
   try {
     const { userId } = req.body;
-    const [rows0] = await pool.query(
-      `SELECT siteId FROM users WHERE id = ?`,
-      [userId]
-    );
+    const [rows0] = await pool.query(`SELECT siteId FROM users WHERE id = ?`, [
+      userId,
+    ]);
     const [names] = await pool.query(
       `SELECT name FROM inventories WHERE id = ?`,
       [req.params.id]

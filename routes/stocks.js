@@ -6,6 +6,8 @@ import {
   createStock,
   updateStock,
   rollback,
+  downloadReportPdf,
+  getStocksBySite,
 } from "../controllers/stocks.js";
 
 const router = express.Router();
@@ -16,7 +18,9 @@ router.post("/:id", createStock);
 // READ
 router.get("/", getStocks);
 router.get("/:id", getStock);
-router.get("/reports/sitewise", getStocksBySites)
+router.get("/site/:id", getStocksBySite);
+router.get("/reports/sitewise", getStocksBySites);
+router.get("/reports/sitewise/download", downloadReportPdf);
 
 // UPDATE
 router.put("/:id", updateStock);

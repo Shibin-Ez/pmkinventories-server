@@ -18,6 +18,10 @@ export const createExchange = async (req, res) => {
 export const getExchanges = async (req, res) => {
   try {
     const [rows, fields] = await pool.query("SELECT * FROM exchanges");
+    if (rows.length === 0) {
+      console.log("zero exchanges so far");
+      res.status(404).send("Zero Exchanges So Far");
+    }
     const reverseRows = rows.reverse();
     const modifiedRows = [];
     for (const row of reverseRows) {

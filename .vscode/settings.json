@@ -26,5 +26,8 @@
             "database": "inventoryDB",
             "username": "shibin"
         }
-    ]
+    ],
+    "files.associations": {
+        "iostream": "cpp"
+    }
 }
