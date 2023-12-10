@@ -14,8 +14,8 @@ import authRoutes from "./routes/auth.js";
 import homeRoutes from "./routes/home.js";
 import categoryRoutes from "./routes/category.js";
 
-import https from "https";
-import fs from "fs";
+// import https from "https";
+// import fs from "fs";
 
 // CONFIGURATION
 const app = express();
@@ -44,12 +44,12 @@ app.use("/categories", categoryRoutes);
 
 
 // https setup
-const options = {
-  key: fs.readFileSync('certificates/key.pem'),
-  cert: fs.readFileSync('certificates/cert.pem')
-};
+// const options = {
+//   key: fs.readFileSync('certificates/key.pem'),
+//   cert: fs.readFileSync('certificates/cert.pem')
+// };
 
-// Create HTTPS server
-const server = https.createServer(options, app);
+// // Create HTTPS server
+// const server = https.createServer(options, app);
 
-server.listen(3001, () => console.log("Server started on port 3001"));
+app.listen(3001, () => console.log("Server started on port 3001"));
