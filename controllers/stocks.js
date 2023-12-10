@@ -215,6 +215,101 @@ export const getStocksBySite = async (req, res) => {
   }
 };
 
+export const downloadSingleSiteReport = async (req, res) => {
+  try {
+    const doc = new PDFDocument({ margin: 30, size: "A4" });
+    const filename = "report.pdf";
+    const pdfStream = doc.pipe(fs.createWriteStream(filename));
+
+    // PDF metadata
+    doc.info["Title"] = "Sitewise Inventory Report";
+
+    // Fetch data from the database
+    const [rows0, fields] = await pool.query(
+      `SELECT * FROM stocks WHERE siteId = ?`,
+      [req.params.id]
+    );
+    const [sites] = await pool.query("SELECT name FROM sites WHERE id = ?", [
+      req.params.id,
+    ]);
+    const [inventories] = await pool.query("SELECT * FROM inventories");
+    const rows = [];
+    for (const row of rows0) {
+      const sum = row.available + row.serviceable + row.scrapped;
+      if (sum === 0) continue;
+      for (const inventory of inventories) {
+        if (inventory.id === row.inventoryId) {
+          row.inventoryName = inventory.name;
+          break;
+        }
+      }
+
+      rows.push(row);
+    }
+
+    // Create table data
+    let count = 1;
+    const table = {
+      title: sites[0].name,
+      headers: [
+        { label: "Sl.No", property: "slNo", width: 50, renderer: null },
+        { label: "Inventory", property: "name", width: 200, renderer: null },
+        {
+          label: "Available",
+          property: "available",
+          width: 100,
+          renderer: null,
+        },
+        {
+          label: "Serviceable",
+          property: "serviceable",
+          width: 100,
+          renderer: null,
+        },
+        {
+          label: "Scrapped",
+          property: "scrapped",
+          width: 100,
+          renderer: null,
+        },
+      ],
+      rows: rows.map((row) => [
+        count++,
+        row.inventoryName,
+        row.available,
+        row.serviceable,
+        row.scrapped,
+      ]),
+    };
+
+    // Calculate the horizontal center position for the table
+    const pageWidth = doc.page.width;
+    const tableWidth = 550; // Assuming each column is 100 units wide
+    const centerX = (pageWidth - tableWidth) / 2;
+
+    // Center the table horizontally on the page
+    doc.table(table, {
+      width: tableWidth,
+      x: centerX,
+    });
+
+    // Respond to the request with the PDF as a download
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);
+
+    // Pipe the PDF stream to the response
+    pdfStream.on("finish", () => {
+      fs.createReadStream(filename).pipe(res);
+    });
+
+    // End the PDF creation
+    doc.end();
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Something broke!");
+  }
+};
+
 export const downloadReportPdf = async (req, res) => {
   try {
     const doc = new PDFDocument({ margin: 30, size: "A4" });

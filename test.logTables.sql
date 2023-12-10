@@ -46,3 +46,9 @@ ALTER TABLE exchanges MODIFY id INT PRIMARY KEY AUTO_INCREMENT;
 
 --@block set table schema of stocks id to primary key and auto increment
 ALTER TABLE prevStocks MODIFY id INT PRIMARY KEY AUTO_INCREMENT;
+
+--@block
+delete from stocks where siteId = 12;
+
+--@block
+delete from exchanges where id = 8;

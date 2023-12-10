@@ -43,6 +43,7 @@ export const getExchanges = async (req, res) => {
         [fromStockId]
       );
       console.log(data);
+      // console.log(data[0].inventoryId);
       const [data2] = await pool.query(
         `SELECT name FROM inventories WHERE id = ?`,
         [data[0].inventoryId]

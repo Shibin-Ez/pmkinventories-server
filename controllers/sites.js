@@ -44,7 +44,7 @@ export const getSite = async (req, res) => {
     const [rows, fields] = await pool.query(
       `SELECT * FROM sites WHERE id = ${req.params.id}`
     );
-    res.json(rows[0]);
+    res.status(200).json(rows[0]);
   } catch (err) {
     console.log(err);
     res.status(500).send("Something broke!");

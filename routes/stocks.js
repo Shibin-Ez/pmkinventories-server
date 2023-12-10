@@ -8,6 +8,7 @@ import {
   rollback,
   downloadReportPdf,
   getStocksBySite,
+  downloadSingleSiteReport,
 } from "../controllers/stocks.js";
 
 const router = express.Router();
@@ -19,6 +20,7 @@ router.post("/:id", createStock);
 router.get("/", getStocks);
 router.get("/:id", getStock);
 router.get("/site/:id", getStocksBySite);
+router.get("/site/:id/download", downloadSingleSiteReport);
 router.get("/reports/sitewise", getStocksBySites);
 router.get("/reports/sitewise/download", downloadReportPdf);
 
