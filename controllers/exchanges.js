@@ -101,3 +101,27 @@ export const getLastFewExchanges = async (req, res) => {
     res.status(500).send("Something broke!");
   }
 };
+
+export const getCrudLogs = async (req, res) => {
+  try {
+    const [rows, fields] = await pool.query(
+      `SELECT * FROM crudLogs ORDER BY id DESC`,
+      ["exchanges"]
+    );
+    const [users] = await pool.query(`SELECT id, name, userId FROM users`);
+    
+    for (const row of rows) {
+      for (const user of users) {
+        if (user.id === row.userId) {
+          row.userName = user.name;
+          row.userID = user.userId;
+        }
+      }
+    }
+
+    res.status(200).json(rows);
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Something broke!");
+  }
+};

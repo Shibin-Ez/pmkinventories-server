@@ -4,6 +4,7 @@ import {
   getExchanges,
   createExchange,
   getLastFewExchanges,
+  getCrudLogs,
 } from "../controllers/exchanges.js";
 
 const router = express.Router();
@@ -13,7 +14,8 @@ const router = express.Router();
 
 // READ
 router.get("/", getExchanges);
-router.get("/:id", getExchange);
+router.get("/exchange/:id", getExchange);
 router.post("/lastfew", getLastFewExchanges);
+router.get("/cruds", getCrudLogs);
 
 export default router;

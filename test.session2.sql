@@ -1,5 +1,5 @@
 --@block
-use testdb;
+use testdb2;
 
 --@block add new column with data 1000+id
 ALTER TABLE inventories ADD COLUMN categoryId INT NOT NULL DEFAULT 1 AFTER inventoryId;
@@ -25,3 +25,7 @@ ALTER TABLE inventories MODIFY id INT PRIMARY KEY AUTO_INCREMENT;
 
 --@block set siteId = 1000+id
 update sites set siteId = 1000+id;
+
+
+--@block
+SELECT * FROM crudLogs;
