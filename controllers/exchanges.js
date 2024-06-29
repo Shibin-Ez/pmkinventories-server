@@ -23,7 +23,7 @@ export const getExchanges = async (req, res) => {
       res.status(404).send("Zero Exchanges So Far");
     }
 
-    const [stocks] = await pool.query(`SELECT siteId, inventoryId FROM stocks`);
+    const [stocks] = await pool.query(`SELECT id, siteId, inventoryId FROM stocks`);
     const [inventories] = await pool.query("SELECT id, name FROM inventories");
     const [sites] = await pool.query("SELECT name FROM sites");
 
@@ -52,11 +52,13 @@ export const getExchanges = async (req, res) => {
       }
 
       let currentInventory = {};
+      console.log(currentStock);
       for (const inventory of inventories) {
         if (currentStock.inventoryId === inventory.id) {
           currentInventory = inventory;
         }
       }
+      console.log("end");
 
       let currentSite = {};
       for (const site of sites) {
