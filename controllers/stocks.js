@@ -450,23 +450,25 @@ export const updateItemStates = async (req, res) => {
 export const rollback = async (req, res) => {
   try {
     const { userId } = req.body;
+    const inventoryId = req.params.id;
     const [rows0] = await pool.query(`SELECT siteId FROM users WHERE id = ?`, [
       userId,
     ]);
     const [names] = await pool.query(
       `SELECT name FROM inventories WHERE id = ?`,
-      [req.params.id]
+      [inventoryId]
     );
     const [rows] = await pool.query(
       `SELECT id, available, serviceable, scrapped FROM prevStocks WHERE siteId = ? AND inventoryId = ?`,
-      [rows0[0].siteId, req.params.id]
+      [rows0[0].siteId, inventoryId]
     );
     console.log(rows);
     const [stockRows] = await pool.query(
-      `SELECT available, serviceable, scrapped FROM stocks WHERE id = ?`,
-      [rows[0].id]
+      `SELECT id, available, serviceable, scrapped FROM stocks WHERE siteId = ? AND inventoryId = ?`,
+      [rows0[0].siteId, inventoryId]
     );
     console.log(stockRows);
+    const stockId = stockRows[0].id;
 
     if (
       rows[0].available == stockRows[0].available &&
@@ -479,7 +481,7 @@ export const rollback = async (req, res) => {
 
     const [rows2, fields] = await pool.query(
       `UPDATE stocks SET available = ?, serviceable = ?, scrapped = ? WHERE id = ?`,
-      [rows[0].available, rows[0].serviceable, rows[0].scrapped, stockRows[0].id]
+      [rows[0].available, rows[0].serviceable, rows[0].scrapped, stockId]
     );
     const [rows3] = await pool.query(
       `INSERT INTO exchanges (fromStockId, toStockId, available, serviceable, scrapped, remark, prevAvailable, prevServiceable, prevScrapped) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -500,7 +502,7 @@ export const rollback = async (req, res) => {
       serviceable: rows[0].serviceable,
       scrapped: rows[0].scrapped,
       total: rows[0].available + rows[0].serviceable + rows[0].scrapped,
-      id: req.params.id,
+      id: inventoryId,
       name: names[0].name,
     });
   } catch (err) {
