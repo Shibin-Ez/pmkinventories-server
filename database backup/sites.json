@@ -1,0 +1,326 @@
+[
+  {
+    "id": 4,
+    "name": "PKDas Vaniyamkulam",
+    "siteType": "workingSite",
+    "address": "Vaniyamkulam",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1004"
+  },
+  {
+    "id": 5,
+    "name": "Nehru college of Architecture",
+    "siteType": "workingSite",
+    "address": "lakkidi ",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1005"
+  },
+  {
+    "id": 6,
+    "name": "Gokulam Residence",
+    "siteType": "workingSite",
+    "address": "Chennai\n",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1006"
+  },
+  {
+    "id": 8,
+    "name": "Anas Residence ",
+    "siteType": "workingSite",
+    "address": "Kallambalam",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1008"
+  },
+  {
+    "id": 9,
+    "name": "Aster Capital ",
+    "siteType": "workingSite",
+    "address": "Aakulam",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1009"
+  },
+  {
+    "id": 11,
+    "name": "GG Hospital ",
+    "siteType": "workingSite",
+    "address": "Trivandrum ",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1011"
+  },
+  {
+    "id": 12,
+    "name": "Gokulam Guruvayur ",
+    "siteType": "workingSite",
+    "address": "Guruvayur",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1012"
+  },
+  {
+    "id": 14,
+    "name": "M Space",
+    "siteType": "workingSite",
+    "address": "Trichur",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1014"
+  },
+  {
+    "id": 16,
+    "name": "Dr. Manoj House",
+    "siteType": "workingSite",
+    "address": "Trivandrum ",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1016"
+  },
+  {
+    "id": 17,
+    "name": "villament Kuttikatoor ",
+    "siteType": "workingSite",
+    "address": "Kuttikatoor ",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1017"
+  },
+  {
+    "id": 19,
+    "name": "FAIZAL VILLA",
+    "siteType": "workingSite",
+    "address": "Kuttikatoor ",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1019"
+  },
+  {
+    "id": 20,
+    "name": "Kareem Villa ",
+    "siteType": "workingSite",
+    "address": "Kuttikatoor ",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1020"
+  },
+  {
+    "id": 21,
+    "name": "A4 Villa",
+    "siteType": "workingSite",
+    "address": "Kuttikatoor ",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1021"
+  },
+  {
+    "id": 22,
+    "name": "Club House",
+    "siteType": "workingSite",
+    "address": "Kuttikatoor ",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1022"
+  },
+  {
+    "id": 23,
+    "name": "Nishad Villa ",
+    "siteType": "workingSite",
+    "address": "Kuttikatoor ",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1023"
+  },
+  {
+    "id": 24,
+    "name": "KMCT Ayurveda ",
+    "siteType": "workingSite",
+    "address": "Manassery ",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1024"
+  },
+  {
+    "id": 25,
+    "name": "KMCT Kuttipuram ",
+    "siteType": "workingSite",
+    "address": "Kuttipuram ",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1025"
+  },
+  {
+    "id": 26,
+    "name": "PK Steel Nallam",
+    "siteType": "workingSite",
+    "address": "Nallalan",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1026"
+  },
+  {
+    "id": 27,
+    "name": "PK Steel Nallam",
+    "siteType": "workingSite",
+    "address": "Nallalan",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1027"
+  },
+  {
+    "id": 28,
+    "name": "Apollo Cypress",
+    "siteType": "workingSite",
+    "address": "Kozhikode",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1028"
+  },
+  {
+    "id": 30,
+    "name": "Parrisons Pavangad",
+    "siteType": "workingSite",
+    "address": "Kozhikode",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1030"
+  },
+  {
+    "id": 31,
+    "name": "Sherga Villa ",
+    "siteType": "workingSite",
+    "address": "Kozhikode",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1031"
+  },
+  {
+    "id": 32,
+    "name": "Kannankandy Puthiyara",
+    "siteType": "workingSite",
+    "address": "Puyhiyara ",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1032"
+  },
+  {
+    "id": 33,
+    "name": "Komappas Commercial",
+    "siteType": "workingSite",
+    "address": "Jafferkhan colony ",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1033"
+  },
+  {
+    "id": 34,
+    "name": "Kannankandy Thondayad",
+    "siteType": "workingSite",
+    "address": "Thondayad Kozhikode ",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1034"
+  },
+  {
+    "id": 35,
+    "name": "Riyas Residence ",
+    "siteType": "workingSite",
+    "address": "Chalappuram, Kozhikode ",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1035"
+  },
+  {
+    "id": 36,
+    "name": "Nishaj Commercial ",
+    "siteType": "workingSite",
+    "address": "Ramanattukara, Koxhikode ",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1036"
+  },
+  {
+    "id": 37,
+    "name": "Gokulam Arayidathpalam ",
+    "siteType": "workingSite",
+    "address": "Kozhikode",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1037"
+  },
+  {
+    "id": 38,
+    "name": "Faizal Kalleri Complex Vadakara",
+    "siteType": "workingSite",
+    "address": "Vadakara ",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1038"
+  },
+  {
+    "id": 39,
+    "name": "Nesto Kottakal",
+    "siteType": "workingSite",
+    "address": "Kottakal ",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1039"
+  },
+  {
+    "id": 40,
+    "name": "CH Centre Tirur",
+    "siteType": "workingSite",
+    "address": "Tirur",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1040"
+  },
+  {
+    "id": 41,
+    "name": "Shameer Residence Mathilakam",
+    "siteType": "workingSite",
+    "address": "Mathilakam ",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1041"
+  },
+  {
+    "id": 42,
+    "name": "Azeezia Palakkad ",
+    "siteType": "workingSite",
+    "address": "Erattakulam, Palakkad",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1042"
+  },
+  {
+    "id": 43,
+    "name": "Sundar Ventures ",
+    "siteType": "workingSite",
+    "address": "Palakkad ",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1043"
+  },
+  {
+    "id": 44,
+    "name": "sabik commercial Mampuzha ",
+    "siteType": "workingSite",
+    "address": "mampuzha, panthherankavu ",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1044"
+  },
+  {
+    "id": 45,
+    "name": "Rahmania Arabic Complex ",
+    "siteType": "workingSite",
+    "address": "Ottapalam",
+    "latitude": null,
+    "longitude": null,
+    "siteId": "1045"
+  }
+]

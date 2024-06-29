@@ -14,6 +14,16 @@ create table crudLogs (
     timestamp timestamp default current_timestamp
 );
 
+
+--@block
+create table exchanges (
+    id int primary key auto_increment,
+    fromStockId int,
+    toStockId int,
+    quantity int,
+    timestamp timestamp default current_timestamp
+);
+
 --@block
 create table prevStocks like stocks;
 insert into prevStocks select * from stocks;

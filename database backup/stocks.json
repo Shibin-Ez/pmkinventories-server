@@ -1,0 +1,386 @@
+[
+  {
+    "id": 1,
+    "siteId": 1,
+    "inventoryId": 1,
+    "available": 78,
+    "serviceable": 110,
+    "scrapped": 90
+  },
+  {
+    "id": 2,
+    "siteId": 1,
+    "inventoryId": 2,
+    "available": 98,
+    "serviceable": 60,
+    "scrapped": 8
+  },
+  {
+    "id": 3,
+    "siteId": 1,
+    "inventoryId": 4,
+    "available": 8,
+    "serviceable": 20,
+    "scrapped": 0
+  },
+  {
+    "id": 4,
+    "siteId": 1,
+    "inventoryId": 5,
+    "available": 4,
+    "serviceable": 5,
+    "scrapped": 9
+  },
+  {
+    "id": 5,
+    "siteId": 1,
+    "inventoryId": 3,
+    "available": 8,
+    "serviceable": 5,
+    "scrapped": 9
+  },
+  {
+    "id": 6,
+    "siteId": 1,
+    "inventoryId": 6,
+    "available": 0,
+    "serviceable": 98,
+    "scrapped": 0
+  },
+  {
+    "id": 7,
+    "siteId": 1,
+    "inventoryId": 44,
+    "available": 24,
+    "serviceable": 10,
+    "scrapped": 0
+  },
+  {
+    "id": 8,
+    "siteId": 4,
+    "inventoryId": 10,
+    "available": 280,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 9,
+    "siteId": 4,
+    "inventoryId": 9,
+    "available": 0,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 10,
+    "siteId": 43,
+    "inventoryId": 15,
+    "available": 60,
+    "serviceable": 3,
+    "scrapped": 0
+  },
+  {
+    "id": 11,
+    "siteId": 43,
+    "inventoryId": 16,
+    "available": 30,
+    "serviceable": 7,
+    "scrapped": 0
+  },
+  {
+    "id": 12,
+    "siteId": 43,
+    "inventoryId": 18,
+    "available": 50,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 13,
+    "siteId": 43,
+    "inventoryId": 20,
+    "available": 19,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 14,
+    "siteId": 43,
+    "inventoryId": 28,
+    "available": 2,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 15,
+    "siteId": 43,
+    "inventoryId": 32,
+    "available": 1,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 16,
+    "siteId": 43,
+    "inventoryId": 34,
+    "available": 1,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 17,
+    "siteId": 43,
+    "inventoryId": 36,
+    "available": 3,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 18,
+    "siteId": 43,
+    "inventoryId": 40,
+    "available": 1,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 19,
+    "siteId": 43,
+    "inventoryId": 35,
+    "available": 1,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 20,
+    "siteId": 43,
+    "inventoryId": 31,
+    "available": 2,
+    "serviceable": 1,
+    "scrapped": 0
+  },
+  {
+    "id": 21,
+    "siteId": 43,
+    "inventoryId": 12,
+    "available": 255,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 22,
+    "siteId": 43,
+    "inventoryId": 25,
+    "available": 333,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 23,
+    "siteId": 43,
+    "inventoryId": 26,
+    "available": 68,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 24,
+    "siteId": 43,
+    "inventoryId": 27,
+    "available": 70,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 25,
+    "siteId": 43,
+    "inventoryId": 42,
+    "available": 1,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 26,
+    "siteId": 43,
+    "inventoryId": 45,
+    "available": 39,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 27,
+    "siteId": 42,
+    "inventoryId": 9,
+    "available": 1,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 28,
+    "siteId": 0,
+    "inventoryId": 10,
+    "available": 50,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 29,
+    "siteId": 0,
+    "inventoryId": 15,
+    "available": 20,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 30,
+    "siteId": 0,
+    "inventoryId": 16,
+    "available": 70,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 31,
+    "siteId": 0,
+    "inventoryId": 28,
+    "available": 1,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 32,
+    "siteId": 0,
+    "inventoryId": 30,
+    "available": 0,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 33,
+    "siteId": 0,
+    "inventoryId": 45,
+    "available": 10,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 34,
+    "siteId": 0,
+    "inventoryId": 47,
+    "available": 1,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 35,
+    "siteId": 0,
+    "inventoryId": 36,
+    "available": 2,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 36,
+    "siteId": 45,
+    "inventoryId": 10,
+    "available": 80,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 37,
+    "siteId": 45,
+    "inventoryId": 16,
+    "available": 72,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 38,
+    "siteId": 45,
+    "inventoryId": 25,
+    "available": 4,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 39,
+    "siteId": 45,
+    "inventoryId": 26,
+    "available": 15,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 40,
+    "siteId": 45,
+    "inventoryId": 28,
+    "available": 1,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 41,
+    "siteId": 45,
+    "inventoryId": 32,
+    "available": 2,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 42,
+    "siteId": 45,
+    "inventoryId": 34,
+    "available": 0,
+    "serviceable": 1,
+    "scrapped": 0
+  },
+  {
+    "id": 43,
+    "siteId": 45,
+    "inventoryId": 36,
+    "available": 1,
+    "serviceable": 2,
+    "scrapped": 0
+  },
+  {
+    "id": 44,
+    "siteId": 45,
+    "inventoryId": 45,
+    "available": 18,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 45,
+    "siteId": 45,
+    "inventoryId": 46,
+    "available": 1,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 46,
+    "siteId": 45,
+    "inventoryId": 47,
+    "available": 2,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 47,
+    "siteId": 45,
+    "inventoryId": 27,
+    "available": 11,
+    "serviceable": 0,
+    "scrapped": 0
+  },
+  {
+    "id": 48,
+    "siteId": 45,
+    "inventoryId": 15,
+    "available": 20,
+    "serviceable": 0,
+    "scrapped": 0
+  }
+]

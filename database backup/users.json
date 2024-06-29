@@ -1,0 +1,156 @@
+[
+  {
+    "id": 1,
+    "name": "testUser",
+    "userId": "40001",
+    "userRole": "user",
+    "siteId": 4,
+    "siteName": "PKDas Vaniyamkulam",
+    "mobileNo": "8594082346",
+    "email": "test@user.com",
+    "passwordHash": "$2b$10$RFDsfHQXUdqEbCFxQ7ekb.CK1Si.5RS7uHIqZuAffm2XqV/dIDDBi"
+  },
+  {
+    "id": 2,
+    "name": "testAdmin",
+    "userId": "30001",
+    "userRole": "admin",
+    "siteId": null,
+    "siteName": "",
+    "mobileNo": "9876543110",
+    "email": "test@admin.com",
+    "passwordHash": "$2b$10$tnXlSFmsRTMgUE6jpu6rGeYIk38JwPneDdi9FAkBHIwJi.jrdk.VC"
+  },
+  {
+    "id": 11,
+    "name": "sairam Haridas",
+    "userId": "40002",
+    "userRole": "user",
+    "siteId": null,
+    "siteName": "",
+    "mobileNo": "9946486818",
+    "email": "",
+    "passwordHash": "$6101"
+  },
+  {
+    "id": 12,
+    "name": "Baiju",
+    "userId": "40001",
+    "userRole": "user",
+    "siteId": 17,
+    "siteName": "villament Kuttikatoor ",
+    "mobileNo": "9349001190",
+    "email": "",
+    "passwordHash": "$3662"
+  },
+  {
+    "id": 13,
+    "name": "Anoop ",
+    "userId": "40002",
+    "userRole": "user",
+    "siteId": null,
+    "siteName": "",
+    "mobileNo": "9388111511",
+    "email": "",
+    "passwordHash": "$5554"
+  },
+  {
+    "id": 14,
+    "name": "Rafi",
+    "userId": "40003",
+    "userRole": "user",
+    "siteId": 4,
+    "siteName": "PKDas Vaniyamkulam",
+    "mobileNo": "8089410244",
+    "email": "",
+    "passwordHash": "$2794"
+  },
+  {
+    "id": 15,
+    "name": "Aromal",
+    "userId": "10002",
+    "userRole": "admin",
+    "siteId": 0,
+    "siteName": "",
+    "mobileNo": "9388001890",
+    "email": "",
+    "passwordHash": "$2b$10$/rao/rwiAOb5AlHfUZgjae7.0tVX1G1R5gctXUg1giWfqJK81Eaou"
+  },
+  {
+    "id": 16,
+    "name": "Aromal C",
+    "userId": "10003",
+    "userRole": "director",
+    "siteId": 0,
+    "siteName": "",
+    "mobileNo": "9388001890",
+    "email": "",
+    "passwordHash": "$2b$10$pB/Qn5ZKUBYNa/Bw5Ssjg.zPjva8SrF2br2bvE31sKFd7HlLYOSK6"
+  },
+  {
+    "id": 17,
+    "name": "Sreekanth Edavalath ",
+    "userId": "40006",
+    "userRole": "user",
+    "siteId": 43,
+    "siteName": "Sundar Ventures ",
+    "mobileNo": "9349005190",
+    "email": "",
+    "passwordHash": "$2b$10$KYjcXWQSEOPdwhws0KMDLOCF80SjQMSHGjQxJ7nTKAC0Ae4kFGR2W"
+  },
+  {
+    "id": 18,
+    "name": "Pramod ",
+    "userId": "40007",
+    "userRole": "user",
+    "siteId": 9,
+    "siteName": "Aster Capital ",
+    "mobileNo": "8592002290",
+    "email": "",
+    "passwordHash": "$7031"
+  },
+  {
+    "id": 19,
+    "name": "yazir Arafath ",
+    "userId": "40008",
+    "userRole": "user",
+    "siteId": 42,
+    "siteName": "Azeezia Palakkad ",
+    "mobileNo": "9388006490",
+    "email": "",
+    "passwordHash": "$2b$10$BWR8JSArkDa65cP47hncm.MXpkeIAu213j7BuNLhTfnMICdeibp2C"
+  },
+  {
+    "id": 20,
+    "name": "Rijas K P",
+    "userId": "40009",
+    "userRole": "user",
+    "siteId": 41,
+    "siteName": "Shameer Residence Mathilakam",
+    "mobileNo": "7907293656",
+    "email": "",
+    "passwordHash": "$2b$10$J.uY94tFCp0NMmmdh.P5E.U2cMGPrWfEwn0msuev9CwzwXFb8L2mO"
+  },
+  {
+    "id": 21,
+    "name": "Anoop",
+    "userId": "40010",
+    "userRole": "user",
+    "siteId": 45,
+    "siteName": "Rahmania Arabic Complex ",
+    "mobileNo": "9388009050",
+    "email": "",
+    "passwordHash": "$2b$10$/Gmus2CU./HXz5aVuhsJxuzL42lRAj2rTr0wKwWG9f4oS172rery6"
+  },
+  {
+    "id": 22,
+    "name": "Anil",
+    "userId": "40011",
+    "userRole": "user",
+    "siteId": 0,
+    "siteName": "",
+    "mobileNo": "+91 984702",
+    "email": "",
+    "passwordHash": "$8192"
+  }
+]

@@ -16,7 +16,7 @@ export const createUser = async (req, res) => {
         [userRole]
       );
       console.log(rows0);
-      let userId = rows0[0].rowCount + 1;
+      let userId = rows0.length > 0 ? rows0[0].rowCount + 1 : 1;
       switch (userRole) {
         case "director":
           userId = 10000 + userId;
