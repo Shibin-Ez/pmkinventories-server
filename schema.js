@@ -8,6 +8,7 @@ export const Sites = {
 
 export const Inventories = {
     id: 'INT AUTO_INCREMENT PRIMARY KEY',
+    categoryId: 'INT FOREIGN KEY',
     name: 'VARCHAR(255)',
     unit: 'VARCHAR(10)',
 }

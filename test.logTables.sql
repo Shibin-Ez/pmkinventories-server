@@ -29,7 +29,7 @@ create table prevStocks like stocks;
 insert into prevStocks select * from stocks;
 
 --@block
-select * from exchanges;
+select * from inventories;
 
 --@block delete all contents of exchanges
 delete from exchanges;

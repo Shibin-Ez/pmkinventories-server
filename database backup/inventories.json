@@ -1,0 +1,296 @@
+[
+  {
+    "id": 5,
+    "name": "kgdkgdtsj",
+    "unit": null,
+    "inventoryId": "1005",
+    "categoryId": 2
+  },
+  {
+    "id": 6,
+    "name": "ydydyd",
+    "unit": null,
+    "inventoryId": "1006",
+    "categoryId": 2
+  },
+  {
+    "id": 7,
+    "name": "testInventory3",
+    "unit": null,
+    "inventoryId": "1007",
+    "categoryId": 1
+  },
+  {
+    "id": 8,
+    "name": "testInventory4",
+    "unit": null,
+    "inventoryId": "1008",
+    "categoryId": 1
+  },
+  {
+    "id": 9,
+    "name": "Tipper lorry",
+    "unit": null,
+    "inventoryId": "1009",
+    "categoryId": 2
+  },
+  {
+    "id": 10,
+    "name": "Props 2.10",
+    "unit": null,
+    "inventoryId": "1010",
+    "categoryId": 1
+  },
+  {
+    "id": 11,
+    "name": "Props 2.10",
+    "unit": null,
+    "inventoryId": "1011",
+    "categoryId": 1
+  },
+  {
+    "id": 12,
+    "name": "Props 3",
+    "unit": null,
+    "inventoryId": "1012",
+    "categoryId": 4
+  },
+  {
+    "id": 14,
+    "name": "Props 3.5",
+    "unit": null,
+    "inventoryId": "1014",
+    "categoryId": 1
+  },
+  {
+    "id": 15,
+    "name": "Span",
+    "unit": null,
+    "inventoryId": "1015",
+    "categoryId": 1
+  },
+  {
+    "id": 16,
+    "name": "Sheet 1.15 x 0.60",
+    "unit": null,
+    "inventoryId": "1016",
+    "categoryId": 1
+  },
+  {
+    "id": 18,
+    "name": "Sheet 0.90 x 0.60",
+    "unit": null,
+    "inventoryId": "1018",
+    "categoryId": 1
+  },
+  {
+    "id": 19,
+    "name": "Sheet 0.40 x 0.60",
+    "unit": null,
+    "inventoryId": "1019",
+    "categoryId": 1
+  },
+  {
+    "id": 20,
+    "name": "Cut Sheet ",
+    "unit": null,
+    "inventoryId": "1020",
+    "categoryId": 1
+  },
+  {
+    "id": 21,
+    "name": "Column box sheet",
+    "unit": null,
+    "inventoryId": "1021",
+    "categoryId": 1
+  },
+  {
+    "id": 23,
+    "name": "Ladder",
+    "unit": null,
+    "inventoryId": "1023",
+    "categoryId": 1
+  },
+  {
+    "id": 24,
+    "name": "Standing stage",
+    "unit": null,
+    "inventoryId": "1024",
+    "categoryId": 1
+  },
+  {
+    "id": 25,
+    "name": "H Frame scaffolding",
+    "unit": null,
+    "inventoryId": "1025",
+    "categoryId": 1
+  },
+  {
+    "id": 26,
+    "name": "Pipe  6 M",
+    "unit": null,
+    "inventoryId": "1026",
+    "categoryId": 1
+  },
+  {
+    "id": 27,
+    "name": "Pipe  3 M",
+    "unit": null,
+    "inventoryId": "1027",
+    "categoryId": 1
+  },
+  {
+    "id": 28,
+    "name": "Mixture machine ",
+    "unit": null,
+    "inventoryId": "1028",
+    "categoryId": 1
+  },
+  {
+    "id": 29,
+    "name": "Steel bending machine ",
+    "unit": null,
+    "inventoryId": "1029",
+    "categoryId": 1
+  },
+  {
+    "id": 30,
+    "name": "Steel cutting machine ",
+    "unit": null,
+    "inventoryId": "1030",
+    "categoryId": 1
+  },
+  {
+    "id": 31,
+    "name": "Wood cutting machine 4\"",
+    "unit": null,
+    "inventoryId": "1031",
+    "categoryId": 1
+  },
+  {
+    "id": 32,
+    "name": "Wood cutting machine 7\"",
+    "unit": null,
+    "inventoryId": "1032",
+    "categoryId": 1
+  },
+  {
+    "id": 33,
+    "name": "Welding machine",
+    "unit": null,
+    "inventoryId": "1033",
+    "categoryId": 1
+  },
+  {
+    "id": 34,
+    "name": "vibrator ( Wacker Huson)",
+    "unit": null,
+    "inventoryId": "1034",
+    "categoryId": 1
+  },
+  {
+    "id": 35,
+    "name": "vibrator  Diesel",
+    "unit": null,
+    "inventoryId": "1035",
+    "categoryId": 1
+  },
+  {
+    "id": 36,
+    "name": "vibrator  China",
+    "unit": null,
+    "inventoryId": "1036",
+    "categoryId": 1
+  },
+  {
+    "id": 37,
+    "name": "plant concrete mixing",
+    "unit": null,
+    "inventoryId": "1037",
+    "categoryId": 1
+  },
+  {
+    "id": 38,
+    "name": "plant concrete mixing",
+    "unit": null,
+    "inventoryId": "1038",
+    "categoryId": 1
+  },
+  {
+    "id": 39,
+    "name": "Concrete pump",
+    "unit": null,
+    "inventoryId": "1039",
+    "categoryId": 1
+  },
+  {
+    "id": 40,
+    "name": "lift",
+    "unit": null,
+    "inventoryId": "1040",
+    "categoryId": 1
+  },
+  {
+    "id": 41,
+    "name": "Crane",
+    "unit": null,
+    "inventoryId": "1041",
+    "categoryId": 1
+  },
+  {
+    "id": 42,
+    "name": "Drilling machine",
+    "unit": null,
+    "inventoryId": "1042",
+    "categoryId": 1
+  },
+  {
+    "id": 43,
+    "name": "I section",
+    "unit": null,
+    "inventoryId": "1043",
+    "categoryId": 1
+  },
+  {
+    "id": 44,
+    "name": "C channel",
+    "unit": null,
+    "inventoryId": "1044",
+    "categoryId": 1
+  },
+  {
+    "id": 45,
+    "name": "Grill",
+    "unit": null,
+    "inventoryId": "1045",
+    "categoryId": 1
+  },
+  {
+    "id": 46,
+    "name": "itWontWorkBruh",
+    "unit": null,
+    "inventoryId": "1046",
+    "categoryId": 1
+  },
+  {
+    "id": 90,
+    "name": "nbdyknow",
+    "unit": null,
+    "inventoryId": "1090",
+    "categoryId": 1
+  },
+  {
+    "id": 92,
+    "name": "hctcyvu",
+    "unit": null,
+    "inventoryId": "1092",
+    "categoryId": 2
+  },
+  {
+    "id": 93,
+    "name": "hcuf7g",
+    "unit": null,
+    "inventoryId": "1093",
+    "categoryId": 3
+  }
+]
