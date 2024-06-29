@@ -22,6 +22,11 @@ export const getExchanges = async (req, res) => {
       console.log("zero exchanges so far");
       res.status(404).send("Zero Exchanges So Far");
     }
+
+    const [stocks] = await pool.query(`SELECT siteId, inventoryId FROM stocks`);
+    const [inventories] = await pool.query("SELECT id, name FROM inventories");
+    const [sites] = await pool.query("SELECT name FROM sites");
+
     const reverseRows = rows.reverse();
     const modifiedRows = [];
     for (const row of reverseRows) {
@@ -38,26 +43,34 @@ export const getExchanges = async (req, res) => {
         prevScrapped,
         timestamp,
       } = row;
-      const [data] = await pool.query(
-        `SELECT siteId, inventoryId FROM stocks WHERE id = ?`,
-        [fromStockId]
-      );
-      console.log(data);
-      // console.log(data[0].inventoryId);
-      const [data2] = await pool.query(
-        `SELECT name FROM inventories WHERE id = ?`,
-        [data[0].inventoryId]
-      );
-      console.log(data2);
-      const [data3] = await pool.query(`SELECT name FROM sites WHERE id = ?`, [
-        data[0].siteId,
-      ]);
+
+      let currentStock = {};
+      for (const stock of stocks) {
+        if (stock.id === fromStockId) {
+          currentStock = stock;
+        }
+      }
+
+      let currentInventory = {};
+      for (const inventory of inventories) {
+        if (currentStock.inventoryId === inventory.id) {
+          currentInventory = inventory;
+        }
+      }
+
+      let currentSite = {};
+      for (const site of sites) {
+        if (currentStock.siteId == site.id) {
+          currentSite = site;
+        }
+      }
+
       modifiedRows.push({
         id,
         fromStockId,
         toStockId,
-        inventoryName: data2[0].name,
-        siteName: data3[0].name,
+        inventoryName: currentInventory.name,
+        siteName: currentSite.name,
         available,
         serviceable,
         scrapped,
@@ -67,7 +80,7 @@ export const getExchanges = async (req, res) => {
         prevScrapped,
         timestamp,
       });
-    };
+    }
     res.status(200).json(modifiedRows);
   } catch (err) {
     console.log(err);
@@ -109,7 +122,7 @@ export const getCrudLogs = async (req, res) => {
       ["exchanges"]
     );
     const [users] = await pool.query(`SELECT id, name, userId FROM users`);
-    
+
     for (const row of rows) {
       for (const user of users) {
         if (user.id === row.userId) {
