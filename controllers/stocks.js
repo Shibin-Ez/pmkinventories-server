@@ -479,7 +479,7 @@ export const rollback = async (req, res) => {
 
     const [rows2, fields] = await pool.query(
       `UPDATE stocks SET available = ?, serviceable = ?, scrapped = ? WHERE id = ?`,
-      [rows[0].available, rows[0].serviceable, rows[0].scrapped, rows[0].id]
+      [rows[0].available, rows[0].serviceable, rows[0].scrapped, stockRows[0].id]
     );
     const [rows3] = await pool.query(
       `INSERT INTO exchanges (fromStockId, toStockId, available, serviceable, scrapped, remark, prevAvailable, prevServiceable, prevScrapped) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,

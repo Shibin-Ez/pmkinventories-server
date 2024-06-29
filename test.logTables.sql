@@ -20,7 +20,13 @@ create table exchanges (
     id int primary key auto_increment,
     fromStockId int,
     toStockId int,
-    quantity int,
+    available int,
+    serviceable int,
+    scrapped int,
+    remark varchar(255),
+    prevAvailable int,
+    prevServiceable int,
+    prevScrapped int,
     timestamp timestamp default current_timestamp
 );
 

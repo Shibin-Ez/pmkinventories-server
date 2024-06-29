@@ -28,6 +28,7 @@ DROP TABLE stocks;
 CREATE TABLE inventories (
     id INT PRIMARY KEY AUTO_INCREMENT,
     inventoryId VARCHAR(10),
+    categoryId INT NOT NULL,
     name VARCHAR(255) NOT NULL,
     unit VARCHAR(20)
 );
