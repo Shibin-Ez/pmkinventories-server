@@ -52,13 +52,11 @@ export const getExchanges = async (req, res) => {
       }
 
       let currentInventory = {};
-      console.log(currentStock);
       for (const inventory of inventories) {
         if (currentStock.inventoryId === inventory.id) {
           currentInventory = inventory;
         }
       }
-      console.log("end");
 
       let currentSite = {};
       for (const site of sites) {

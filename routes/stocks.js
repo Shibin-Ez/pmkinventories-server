@@ -9,6 +9,7 @@ import {
   downloadReportPdf,
   getStocksBySite,
   downloadSingleSiteReport,
+  getStocksByInventories,
 } from "../controllers/stocks.js";
 
 const router = express.Router();
@@ -23,6 +24,7 @@ router.get("/site/:id", getStocksBySite);
 router.get("/site/:id/download", downloadSingleSiteReport);
 router.get("/reports/sitewise", getStocksBySites);
 router.get("/reports/sitewise/download", downloadReportPdf);
+router.get("/reports/itemwise", getStocksByInventories);
 
 // UPDATE
 router.put("/:id", updateStock);

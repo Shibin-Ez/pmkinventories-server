@@ -401,6 +401,41 @@ export const getStocksByInventory = async (req, res) => {
   }
 };
 
+export const getStocksByInventories = async (req, res) => {
+  try {
+    const [inventories] = await pool.query(`SELECT id, name FROM inventories`);
+    const [sites] = await pool.query("SELECT id, name FROM sites");
+    const [stocks] = await pool.query("SELECT * FROM stocks");
+
+    const report = [];
+    for (const inventory of inventories) {
+      const inventoryStocks = [];
+      console.log(inventory)
+      for (const stock of stocks) {
+        if (stock.inventoryId === inventory.id) {
+          for (const site of sites) {
+            if (site.id === stock.siteId) {
+              stock.siteName = site.name;
+              break;
+            }
+          }
+
+          const sum = stock.available + stock.serviceable + stock.scrapped;
+          if (sum > 0) inventoryStocks.push(stock);
+        }
+      }
+
+      if (inventoryStocks.length > 0) {
+        report.push({ inventoryName: inventory.name, stocks: inventoryStocks });
+      }
+    }
+    res.status(200).json(report);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: err.message });
+  }
+};
+
 // UPDATE
 export const updateStock = async (req, res) => {
   try {

@@ -15,7 +15,9 @@ const router = express.Router();
 // READ
 router.get("/", getExchanges);
 router.get("/exchange/:id", getExchange);
-router.post("/lastfew", getLastFewExchanges);
 router.get("/cruds", getCrudLogs);
+
+// READ by POSTING
+router.post("/lastfew", getLastFewExchanges);
 
 export default router;
