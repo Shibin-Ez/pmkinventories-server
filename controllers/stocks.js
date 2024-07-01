@@ -1,6 +1,7 @@
 import pool from "../pool.js";
 import PDFDocument from "pdfkit-table";
 import fs from "fs";
+import getLocalDate from "../functions/getLocalDate.js";
 
 // CREATE
 export const createStock = async (req, res) => {
@@ -312,8 +313,10 @@ export const downloadSingleSiteReport = async (req, res) => {
 
 export const downloadReportPdf = async (req, res) => {
   try {
+    const currentDate = getLocalDate();
+
     const doc = new PDFDocument({ margin: 30, size: "A4" });
-    const filename = "report.pdf";
+    const filename = `report-sitewise on ${currentDate}.pdf`;
     const pdfStream = doc.pipe(fs.createWriteStream(filename));
 
     // PDF metadata
@@ -401,7 +404,7 @@ export const getStocksByInventory = async (req, res) => {
   }
 };
 
-export const getStocksByInventories = async (req, res) => {
+export const getStocksItemwise = async () => {
   try {
     const [inventories] = await pool.query(`SELECT id, name FROM inventories`);
     const [sites] = await pool.query("SELECT id, name FROM sites");
@@ -410,7 +413,7 @@ export const getStocksByInventories = async (req, res) => {
     const report = [];
     for (const inventory of inventories) {
       const inventoryStocks = [];
-      console.log(inventory)
+      console.log(inventory);
       for (const stock of stocks) {
         if (stock.inventoryId === inventory.id) {
           for (const site of sites) {
@@ -429,7 +432,96 @@ export const getStocksByInventories = async (req, res) => {
         report.push({ inventoryName: inventory.name, stocks: inventoryStocks });
       }
     }
+    return report;
+  } catch (err) {
+    console.log(err);
+    return;
+  }
+};
+
+export const getStocksByInventories = async (req, res) => {
+  try {
+    const report = await getStocksItemwise();
     res.status(200).json(report);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: err.message });
+  }
+};
+
+export const downloadReportItemwise = async (req, res) => {
+  try {
+    const currentDate = getLocalDate();
+
+    const doc = new PDFDocument({ margin: 30, size: "A4" });
+    const filename = `report-itemwise on ${currentDate}.pdf`;
+    const pdfStream = doc.pipe(fs.createWriteStream(filename));
+
+    // PDF metadata
+    doc.info["Title"] = "Inventory wise Stock Report";
+
+    // Fetch data from the database
+    const report = await getStocksItemwise();
+    
+    for (const inventory of report) {
+      // Create table data
+      let count = 1;
+      const table = {
+        title: inventory.inventoryName,
+        headers: [
+          { label: "Sl.No", property: "slNo", width: 50, renderer: null },
+          { label: "Site", property: "name", width: 200, renderer: null },
+          {
+            label: "Available",
+            property: "available",
+            width: 100,
+            renderer: null,
+          },
+          {
+            label: "Serviceable",
+            property: "serviceable",
+            width: 100,
+            renderer: null,
+          },
+          {
+            label: "Scrapped",
+            property: "scrapped",
+            width: 100,
+            renderer: null,
+          },
+        ],
+        rows: inventory.stocks.map((stock) => [
+          count++,
+          stock.siteName,
+          stock.available,
+          stock.serviceable,
+          stock.scrapped,
+        ]),
+      };
+
+      // Calculate the horizontal center position for the table
+      const pageWidth = doc.page.width;
+      const tableWidth = 550; // Assuming each column is 100 units wide
+      const centerX = (pageWidth - tableWidth) / 2;
+
+      // Center the table horizontally on the page
+      doc.table(table, {
+        width: tableWidth,
+        x: centerX,
+      });
+    }
+
+    // Respond to the request with the PDF as a download
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);
+
+    // Pipe the PDF stream to the response
+    pdfStream.on("finish", () => {
+      fs.createReadStream(filename).pipe(res);
+    });
+
+    // End the PDF creation
+    doc.end();
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: err.message });
