@@ -57,18 +57,4 @@ app.use("/orders", orderRoutes);
 // // Create HTTPS server
 // const server = https.createServer(options, app);
 
-// KEEPING THE SERVER BUSY
-const periodicFunction = async () => {
-  const response = await fetch(`${process.env.SERVER_URL}/sites`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const data = await response.json();
-  console.log(data);
-};
-
-const intervalId = setInterval(periodicFunction, 600000); // 10 minutes
-
 app.listen(process.env.PORT, () => console.log("Server started on port 3001"));
