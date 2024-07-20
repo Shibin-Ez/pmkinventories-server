@@ -4,11 +4,11 @@ import pool from "../pool.js";
 export const createCategory = async (req, res) => {
   try {
     // const userId = parseInt(req.params.id);
-    const { userId, name } = req.body;
+    const { userId, name, type } = req.body;
     console.log(req.body);
     const [rows] = await pool.query(
-      `INSERT INTO categories (name) VALUES (?)`,
-      [name]
+      `INSERT INTO categories (name, type) VALUES (?, ?)`,
+      [name, type]
     );
 
     const [rows2] = await pool.query(

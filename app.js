@@ -13,6 +13,9 @@ import stockRoutes from "./routes/stocks.js";
 import authRoutes from "./routes/auth.js";
 import homeRoutes from "./routes/home.js";
 import categoryRoutes from "./routes/category.js";
+import materialRoutes from "./routes/materials.js";
+import vendorRoutes from "./routes/vendors.js";
+import orderRoutes from "./routes/orders.js";
 
 // import https from "https";
 // import fs from "fs";
@@ -41,7 +44,9 @@ app.use("/stocks", stockRoutes);
 app.use("/auth", authRoutes);
 app.use("/home", homeRoutes);
 app.use("/categories", categoryRoutes);
-
+app.use("/materials", materialRoutes);
+app.use("/vendors", vendorRoutes);
+app.use("/orders", orderRoutes);
 
 // https setup
 // const options = {
@@ -52,4 +57,18 @@ app.use("/categories", categoryRoutes);
 // // Create HTTPS server
 // const server = https.createServer(options, app);
 
-app.listen(3001, () => console.log("Server started on port 3001"));
+// KEEPING THE SERVER BUSY
+const periodicFunction = async () => {
+  const response = await fetch(`${process.env.SERVER_URL}/sites`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const data = await response.json();
+  console.log(data);
+};
+
+const intervalId = setInterval(periodicFunction, 600000); // 10 minutes
+
+app.listen(process.env.PORT, () => console.log("Server started on port 3001"));

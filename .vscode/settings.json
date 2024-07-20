@@ -23,7 +23,7 @@
             "port": 3306,
             "driver": "MySQL",
             "name": "test",
-            "database": "inventoryDB",
+            "database": "pmkdb",
             "username": "shibin"
         }
     ],
